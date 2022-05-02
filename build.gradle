@@ -1,0 +1,38 @@
+plugins {
+  id 'java'
+  id 'application'
+}
+
+compileJava.options.encoding = 'UTF-8'
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+  // Write dependant modules here e.g.
+  // implementation 'groupID:artifactID:version'
+  
+  testImplementation platform('org.junit:junit-bom:5.8.2')
+  testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+mainClassName = 'myapp.MyApp'
+startScripts.applicationName = 'myapp'
+
+run {
+  if (project.hasProperty('args')) {
+    args project.args.split('\\s+')
+    standardInput = System.in
+  }
+}
+
+test {
+  useJUnitPlatform()
+  
+  testLogging {
+    showStandardStreams true
+    events 'started', 'skipped', 'passed', 'failed'
+    exceptionFormat 'full'
+  }
+}

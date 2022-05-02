@@ -1,36 +1,148 @@
-# java-vscode-starter
-Starter template for Java with VSCode
+# java-text-template
 
-## What's necessary
+Very simple text template library in Java, which is intended to be used like a [Literal String Interpolation a.k.a. "f-string" in Python](https://peps.python.org/pep-0498/) and thus not a full-stack templating library.
 
-- [Visual Studio Code](https://azure.microsoft.com/ja-jp/products/visual-studio-code/?cdn=disable)
+## How it looks like
+
+### TextTemplate.render(String fmt, String... values)
+
+```java
+System.out.println(TextTemplate.render("${0}, ${1}!", "Hello", "world"));
+```
+
+### TextTemplate#evaluate(Map<String, String> values)
+
+```java
+/* Renderable.java */
+package main;
+
+import java.util.Map;
+import work.fj68.texttemplate.TextTemplate;
+
+public abstract class Renderable {
+  public abstract Map<String, String> toMap();
+  public abstract String getHtmlTemplate();
+  
+  private TextTemplate template;
+  
+  protected Renderable() {
+    this.template = new TextTemplate(this.getHtmlTemplate());
+  }
+  
+  public String render() {
+    return this.render(new HashMap<String, String>());
+  }
+  
+  public String render(Map<String, String> m) {
+    return this.template.evaluate(this.toMap().putAll(m));
+  }
+}
+```
+
+```java
+/* User.java */
+package main;
+
+import java.util.Map;
+import java.util.HashMap;
+
+public class User {
+  public String name;
+  public String avatorUrl;
+  
+  public User(String name, String avatorUrl) {
+    this.name = name;
+    this.avatorUrl = avatorUrl;
+  }
+  
+  public User(String name) {
+    this(name, "");
+  }
+```  
+
+```java
+/* Post.java */
+package main;
+
+import java.util.Map;
+import java.util.HashMap;
+
+public class Post extends Renderable {
+  public String title;
+  public User author;
+  public String body;
+  
+  public Post(String title, User author, String body) {
+    this.title = title;
+    this.author = author
+    this.body = body;
+  }
+  
+  public Map<String, String> toMap() {
+    var m = new HashMap<String, String>();
+    m.put('title', this.title);
+    m.put('author.name', this.author.name);
+    m.put('body', this.body);
+    return m;
+  }
+  
+  public String getHtmlTemplate() {
+    return """
+      #{TODO: add author and lastModified}
+      <section class="post">
+        <header>
+          <h2 class="title">${title}</h2>
+          <div class="author">
+            ${author.avator}
+            <span class="name">${author.name}</span>
+          </div>
+        </header>
+        <p class="body">${body}</p>
+      </section>
+    """;
+  }
+  
+  @Override
+  public String render(Map<String, String> m) {
+    var avator = TextTemplate.render(
+      "<img class=\"avator\" src=\"${0}\" alt=\"${1}\">",
+      this.author.avatorUrl,
+      this.author.name
+    );
+    m.put("author.avator", avator);
+    return super.render(m);
+  }
+}
+```
+
+```java
+/* MyApp.java */
+package main;
+
+public class MyApp {
+  public static void main(String[] args) {
+    var post = new Post("This is a title.", "This is a body.");
+    System.out.println(post.render());
+  }
+}
+```
+
+## Requirements
+
 - JDK 11+
-- [Gradle](https://gradle.org/)
-- Git
-
-## What's included
-
-- VS Code extentions
-  - [Japanese Language Pack for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=MS-CEINTL.vscode-language-pack-ja)
-  - [GitLens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens)
-  - [Java Extention Pack](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack)
-  - [Gradle for Java](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-gradle)
-  - [SonarLint](https://marketplace.visualstudio.com/items?itemName=SonarSource.sonarlint-vscode)
-  - [CheckStyle for Java](https://marketplace.visualstudio.com/items?itemName=shengchen.vscode-checkstyle) with [Google Java Style](https://google.github.io/styleguide/javaguide.html)
-- Code format on save
-- Lint & IntelliSence
-- Run application with args
-- Test & Debug with [JUnit 5](https://junit.org/junit5/)
 
 ## Installation
 
-1. Click '[Use this template](https://github.com/fj68/java-vscode-starter/generate)' button on this page to create new repository
-2. `git clone git@github.com/your-name/your-repository.git`
-3. `cd your-repository`
-4. Open `your-repository` in VS Code
-5. Install recommended extentions
+TBA
 
-## How to
+## Documentation
+
+TBA
+
+## For Developpers
+
+1. `git clone git@github.com/fj68/java-text-template.git`
+2. `cd java-text-template`
 
 ### Compile
 
@@ -42,12 +154,6 @@ gradle complieJava
 
 ```sh
 gradle test
-```
-
-### Run application
-
-```sh
-gradle run -Pargs='arg1 arg2'
 ```
 
 ### Generate documentation
@@ -67,3 +173,7 @@ gradle clean
 ```sh
 gradle clean build
 ```
+
+## License
+
+MIT

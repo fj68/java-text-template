@@ -1,5 +1,13 @@
 # build artifacts
-build/
+build/*
+!build/docs
+build/docs/*
+!build/docs/javadoc
+!build/reports
+build/reports/*
+!build/reports/tests
+build/reports/tests/*
+!build/reports/tests/test
 
 # Compiled class file
 *.class

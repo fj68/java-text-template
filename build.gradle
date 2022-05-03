@@ -1,6 +1,5 @@
 plugins {
   id 'java'
-  id 'application'
 }
 
 compileJava.options.encoding = 'UTF-8'
@@ -15,16 +14,6 @@ dependencies {
   
   testImplementation platform('org.junit:junit-bom:5.8.2')
   testImplementation 'org.junit.jupiter:junit-jupiter'
-}
-
-mainClassName = 'myapp.MyApp'
-startScripts.applicationName = 'myapp'
-
-run {
-  if (project.hasProperty('args')) {
-    args project.args.split('\\s+')
-    standardInput = System.in
-  }
 }
 
 test {

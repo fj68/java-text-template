@@ -17,6 +17,14 @@ jobs:
           submodules: true
           fetch-depth: 0
       - name: Prepare docs
-        run: mv build/docs/javadoc docs/javadoc
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: build/docs/javadoc
+          destination_dir: ./javadoc
       - name: Prepare test reports
-        run: mv build/reports/tests/test docs/test-reports
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: build/reports/tests/test
+          destination_dir: ./test-reports

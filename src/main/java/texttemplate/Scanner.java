@@ -37,7 +37,7 @@ class Scanner {
     /**
      * Returns current charactor.
      * 
-     * Almost same as next(), but this method doesn't incr current ptr
+     * Almost same as {@link #next}, but this method doesn't incr current ptr
      * 
      * @return Charactor in current position
      */

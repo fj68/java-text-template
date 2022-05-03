@@ -10,14 +10,16 @@ import java.util.stream.Collectors;
 /**
  * Very simple text template class.
  * 
- * - `${variable}` - variables - `#{comment}` - comments - `\n`, '\\', '\$' etc. - Backslash to
- * escape preseeding charactors while '\n', '\r' and '\t' is treated as escape sequence.
+ * - {@code ${variable}} - variables - {@code #{comment}} - comments - {@code '\n'}, {@code '\\'},
+ * {@code '\$'} etc. - Backslash to escape preseeding charactors while {@code '\n'}, {@code '\r'}
+ * and {@code '\t'} is treated as escape sequence.
  */
 public class TextTemplate {
   /**
    * Renders text with values interpolated.
    * 
-   * Each values are interpolated by `${0}`, `${1}` ... etc. according to its order to be given.
+   * Each values are interpolated by {@code ${0}}, {@code ${1}} ... etc. according to its order to
+   * be given.
    * 
    * @param text Format text
    * @param values Values to interpolate
@@ -85,8 +87,8 @@ public class TextTemplate {
   /**
    * Evaluate template.
    * 
-   * Use Evaluate(Map<String, String> env) to pass values which will be interpolated. All the
-   * interpolation values become empty string because they are not found as no env provided.
+   * Use {@link #evaluate} method to pass values which will be interpolated. All the interpolation
+   * values become empty string because they are not found as no env provided.
    * 
    * @return Result text of evaluation
    */
@@ -100,7 +102,7 @@ public class TextTemplate {
    * Environment is a map from keys to interpolation values. When a key is not found in the given
    * env, its value will be an empty string.
    * 
-   * @param env Map from key to value (both String)
+   * @param env Map from key to value (both {@link String})
    * @return Result of evaluation
    */
   public String evaluate(Map<String, String> env) {

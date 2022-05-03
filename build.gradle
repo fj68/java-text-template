@@ -4,6 +4,8 @@ plugins {
 
 compileJava.options.encoding = 'UTF-8'
 
+docsDirName = "docs"
+
 repositories {
   mavenCentral()
 }
@@ -16,9 +18,15 @@ dependencies {
   testImplementation 'org.junit.jupiter:junit-jupiter'
 }
 
+javadoc {
+  destinationDir = file("docs/javadoc")
+}
+
 test {
   useJUnitPlatform()
   
+  reports.html.destination = file("docs/test-reports")
+
   testLogging {
     showStandardStreams true
     events 'started', 'skipped', 'passed', 'failed'

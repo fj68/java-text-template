@@ -1,15 +1,8 @@
 # build artifacts
-build/*
-!build/docs
-build/docs/*
-!build/docs/javadoc
-!build/reports
-build/reports/*
-!build/reports/tests
-build/reports/tests/*
-!build/reports/tests/test
+build/
 
 # Compiled class file
+bin/
 *.class
 
 # Log file

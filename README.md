@@ -139,7 +139,11 @@ TBA
 
 ## Documentation
 
-TBA
+- [Javadoc generated API Documentation](https://fj68.github.io/java-text-template/javadoc/)
+
+## Test Report
+
+- [JUnit 5 generated Test Report](https://fj68.github.io/java-text-template/test-reports/)
 
 ## For Developpers
 

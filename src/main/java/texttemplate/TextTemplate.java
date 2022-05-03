@@ -10,9 +10,26 @@ import java.util.stream.Collectors;
 /**
  * Very simple text template class.
  * 
- * - {@code ${variable}} - variables - {@code #{comment}} - comments - {@code '\n'}, {@code '\\'},
- * {@code '\$'} etc. - Backslash to escape preseeding charactors while {@code '\n'}, {@code '\r'}
- * and {@code '\t'} is treated as escape sequence.
+ * <table>
+ * <caption>Abailable Formats</caption>
+ * <tr>
+ * <th>Code</th>
+ * <th>Description</th>
+ * </tr>
+ * <tr>
+ * <td>{@code ${variable}}</td>
+ * <td>Variables</td>
+ * </tr>
+ * <tr>
+ * <td>{@code #{comment}}</td>
+ * <td>Comments</td>
+ * <tr>
+ * <td>{@code '\n'}, {@code '\\'}, {@code '\$'} etc.</td>
+ * <td>Backslash to escape preseeding charactors while {@code '\n'}, {@code '\r'} and {@code '\t'}
+ * is treated as escape sequence
+ * <td>
+ * </tr>
+ * </table>
  */
 public class TextTemplate {
   /**
@@ -66,9 +83,9 @@ public class TextTemplate {
   /**
    * Compiles template.
    * 
-   * Usually it's not necessary to call this directly because the template itself will defer
-   * compilation until it's necessary. The compilation will occur only once per template and it has
-   * no effect to call this method multiple times on the same tempalte.
+   * Usually it's not necessary to call this directly because the template itself will call at first
+   * evaluation to defer compilation until it's necessary. The compilation will occur only once per
+   * template and it has no effect to call this method multiple times on the same tempalte.
    */
   public void compile() {
     if (this.isCompiled()) {

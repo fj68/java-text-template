@@ -78,9 +78,26 @@ loadScripts(document, 'script');</script>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="java.lang内のクラスまたはインタフェース" class="external-link">Object</a></span></div>
 <div class="block">Very simple text template class.
  
- - <code>${variable}</code> - variables - <code>#{comment}</code> - comments - <code>'\n'</code>, <code>'\\'</code>,
- <code>'\$'</code> etc. - Backslash to escape preseeding charactors while <code>'\n'</code>, <code>'\r'</code>
- and <code>'\t'</code> is treated as escape sequence.</div>
+ <table>
+ <caption>Abailable Formats</caption>
+ <tr>
+ <th>Code</th>
+ <th>Description</th>
+ </tr>
+ <tr>
+ <td><code>${variable}</code></td>
+ <td>Variables</td>
+ </tr>
+ <tr>
+ <td><code>#{comment}</code></td>
+ <td>Comments</td>
+ <tr>
+ <td><code>'\n'</code>, <code>'\\'</code>, <code>'\$'</code> etc.</td>
+ <td>Backslash to escape preseeding charactors while <code>'\n'</code>, <code>'\r'</code> and <code>'\t'</code>
+ is treated as escape sequence
+ <td>
+ </tr>
+ </table></div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -209,9 +226,9 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">compile</span>()</div>
 <div class="block">Compiles template.
  
- Usually it's not necessary to call this directly because the template itself will defer
- compilation until it's necessary. The compilation will occur only once per template and it has
- no effect to call this method multiple times on the same tempalte.</div>
+ Usually it's not necessary to call this directly because the template itself will call at first
+ evaluation to defer compilation until it's necessary. The compilation will occur only once per
+ template and it has no effect to call this method multiple times on the same tempalte.</div>
 </section>
 </li>
 <li>

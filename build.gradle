@@ -23,7 +23,7 @@ javadoc {
 test {
   useJUnitPlatform()
   
-  reports.html.destination = file("docs/test-reports")
+  reports.html.outputLocation = file("docs/test-reports")
 
   testLogging {
     showStandardStreams true

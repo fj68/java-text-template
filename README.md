@@ -33,8 +33,10 @@ public abstract class Renderable {
     return this.render(new HashMap<String, String>());
   }
   
-  public String render(Map<String, String> m) {
-    return this.template.evaluate(this.toMap().putAll(m));
+  public String render(Map<String, String> env) {
+    var m = this.toMap();
+    m.putAll(env);
+    return this.template.evaluate(m);
   }
 }
 ```
@@ -103,14 +105,14 @@ public class Post extends Renderable {
   }
   
   @Override
-  public String render(Map<String, String> m) {
+  public String render(Map<String, String> env) {
     var avator = TextTemplate.render(
       "<img class=\"avator\" src=\"${0}\" alt=\"${1}\">",
       this.author.avatorUrl,
       this.author.name
     );
-    m.put("author.avator", avator);
-    return super.render(m);
+    env.put("author.avator", avator);
+    return super.render(env);
   }
 }
 ```

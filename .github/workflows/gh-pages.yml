@@ -21,7 +21,6 @@ jobs:
         if: ${{ github.ref == 'refs/heads/main' }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: main
           publish_dir: build/docs/javadoc
           destination_dir: ./javadoc
       - name: Prepare test reports
@@ -29,6 +28,5 @@ jobs:
         if: ${{ github.ref == 'refs/heads/main' }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: main
           publish_dir: build/reports/tests/test
           destination_dir: ./test-reports

@@ -179,7 +179,7 @@ public class TextTemplate {
       this.setNextState(State.Text);
       return Optional.of(new Expr(Expr.Kind.Comment, this.scanner.pop()));
     }
-    this.scanner.pop();
+    this.scanner.push(c);
     return Optional.empty();
   }
 }

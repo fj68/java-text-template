@@ -17,6 +17,7 @@ System.out.println(TextTemplate.render("${0}, ${1}!", "Hello", "world"));
 package main;
 
 import java.util.Map;
+import java.util.HashMap;
 
 public abstract class Renderable {
   public abstract Map<String, String> toMap();
@@ -43,9 +44,6 @@ public abstract class Renderable {
 ```java
 /* User.java */
 package main;
-
-import java.util.Map;
-import java.util.HashMap;
 
 public class User {
   public String name;

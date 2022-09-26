@@ -73,7 +73,7 @@ public class Post extends Renderable {
   
   public Post(String title, User author, String body) {
     this.title = title;
-    this.author = author
+    this.author = author;
     this.body = body;
   }
   
